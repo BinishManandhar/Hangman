@@ -1,0 +1,4 @@
+#Tue Apr 16 16:33:32 NPT 2019
+base.0=D\:\\Game Projects\\HangmanTest\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
