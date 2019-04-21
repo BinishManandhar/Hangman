@@ -31,6 +31,11 @@ public class UnderscoreScript : MonoBehaviour
         for (int i = 0; i < player.Length; i++) {
             //Debug.Log("Player " + i + ": " + player[i].gameObject.ToString);
             Destroy(player[i].gameObject, 3.0f+i);
+
+            //Extra codes
+            /*SpriteRenderer person = GameObject.Find("PersonIdle").GetComponent<SpriteRenderer>();
+            Sprite[] darwin = AssetDatabase.LoadAllAssetRepresentationsAtPath("Assets/Resources/Darwin.png").OfType<Sprite>().ToArray();
+            person.sprite = darwin[1];*/
         }
     }
 }

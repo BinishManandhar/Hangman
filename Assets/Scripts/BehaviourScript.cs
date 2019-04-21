@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
 using System;
+using UnityEditor;
+using System.Linq;
 
 public class BehaviourScript : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class BehaviourScript : MonoBehaviour
     public GameObject noose;
     public Animator animator;
     int steps = 0;
+    float timeLeft = 106.5f;
 
     public ObjectStateBehaviours objectStateBehaviours;
 
@@ -82,12 +85,11 @@ public class BehaviourScript : MonoBehaviour
         //Destroy(gameObject, 3f);
         objectStateBehaviours = animator.GetBehaviour<ObjectStateBehaviours>();
         objectStateBehaviours.behaviourScript = this;
-
         noose = GameObject.FindGameObjectWithTag("Noose");
         noose.GetComponent<Animator>().SetTrigger("NooseTrigger");
-        Test();
+        
         i = 0;
-        StartCoroutine(GetRequest("http://192.168.0.114:8000/siterank/google.com/1"));
+        StartCoroutine(GetRequest("http://192.168.0.125:8000/siterank/google.com/1"));
     }
 
     // Update is called once per frame
@@ -101,6 +103,11 @@ public class BehaviourScript : MonoBehaviour
             //InvokeRepeating("inst", 1f, 1f);
 
         }
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0) {
+            MainWork();
+            Test();
+        } 
     }
 
 
@@ -113,6 +120,7 @@ public class BehaviourScript : MonoBehaviour
         if (i == sortedPlayers.Length-1)
         {
             GameObject.FindGameObjectWithTag("Person").GetComponent<Animator>().SetTrigger("HangingTrigger");
+            GameObject.FindGameObjectWithTag("AfterLife").GetComponent<Animator>().SetTrigger("AfterLifeTrigger");
             GameObject.FindGameObjectWithTag("Person").GetComponent<SpriteRenderer>().sortingLayerName = LAYER_NAME;
             noose.SetActive(false);
             noose.SetActive(true);
@@ -197,6 +205,7 @@ public class BehaviourScript : MonoBehaviour
         option3[1].text = "Binish";
         option4[1].text = "Ginish";
         GameObject.FindGameObjectWithTag("InputCanvas").GetComponent<Canvas>().enabled = false;
+        timeLeft = 115.5f;
     }
 
     private void GameObj()

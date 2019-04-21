@@ -13,6 +13,7 @@ TagManager:
   - CheckButton
   - PlayerObject
   - InputCanvas
+  - AfterLife
   layers:
   - Default
   - TransparentFX

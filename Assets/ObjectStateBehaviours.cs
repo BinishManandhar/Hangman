@@ -6,23 +6,25 @@ using UnityEngine.UI;
 public class ObjectStateBehaviours : StateMachineBehaviour
 {
     public BehaviourScript behaviourScript;
-    Button button;
+    
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("StateInfoEnter: " + animator.GetCurrentAnimatorStateInfo(layerIndex).IsName("Hanging"));
         ButtonToggle(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        Debug.Log("Exit");
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
         ButtonToggle(true);
     }
 
@@ -39,7 +41,7 @@ public class ObjectStateBehaviours : StateMachineBehaviour
     //}
 
     private void ButtonToggle(bool toggle) {
-        button = GameObject.FindGameObjectWithTag("CheckButton").GetComponent<Button>();
+        Button button = GameObject.FindGameObjectWithTag("CheckButton").GetComponent<Button>();
         GameObject.Find("option(1)").GetComponent<Button>().enabled = toggle;
         GameObject.Find("option(2)").GetComponent<Button>().enabled = toggle;
         GameObject.Find("option(3)").GetComponent<Button>().enabled = toggle;
